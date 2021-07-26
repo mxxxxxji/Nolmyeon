@@ -125,14 +125,17 @@ public class MainActivity2 extends AppCompatActivity {
 
      //  position_btn = findViewById(R.id.position_btn);
 
-       bmb.addBuilder(new TextOutsideCircleButton.Builder()
+       bmb.addBuilder(new TextInsideCircleButton.Builder()
                .normalImageRes(R.drawable.bf_change_bana_s)
-               .normalText("모든 체험 학습")
-//               .buttonRadius(Util.dp2px(40))
+               .normalText("전체")
+               .textSize(25)
+               .textRect(new Rect(Util.dp2px(35), Util.dp2px(130), Util.dp2px(150), Util.dp2px(80)))
+               .buttonRadius(Util.dp2px(90))
+               //left_margin, top_margin, 가로, 세로
+               .imageRect(new Rect(Util.dp2px(40), Util.dp2px(25), Util.dp2px(140), Util.dp2px(140)))
                .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-
                         mapView.removeAllPOIItems(); // 기존의 마커 제거
                         ArrayList<Exhibition> exhibitionList = app.getExhibitionList();
                         for(int i=0; i<exhibitionList.size(); i++){
@@ -160,11 +163,13 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                })
        );
-       bmb.addBuilder(new TextOutsideCircleButton.Builder()
+       bmb.addBuilder(new TextInsideCircleButton.Builder()
                .normalImageRes(R.drawable.exhibition_icon)
                .normalText("전시")
-//               .textSize(20)
-//               .buttonRadius(Util.dp2px(60))
+               .textSize(25)
+               .textRect(new Rect(Util.dp2px(35), Util.dp2px(130), Util.dp2px(150), Util.dp2px(80)))
+               .buttonRadius(Util.dp2px(90))
+               .imageRect(new Rect(Util.dp2px(50), Util.dp2px(25), Util.dp2px(140), Util.dp2px(140)))
                .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
@@ -179,11 +184,13 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                })
        );
-       bmb.addBuilder(new TextOutsideCircleButton.Builder()
+       bmb.addBuilder(new TextInsideCircleButton.Builder()
                .normalImageRes(R.drawable.festival_icon)
                .normalText("축제")
-//               .textSize(20)
-//               .buttonRadius(Util.dp2px(60))
+               .textSize(25)
+               .textRect(new Rect(Util.dp2px(35), Util.dp2px(130), Util.dp2px(150), Util.dp2px(80)))
+               .buttonRadius(Util.dp2px(90))
+               .imageRect(new Rect(Util.dp2px(40), Util.dp2px(20), Util.dp2px(140), Util.dp2px(140)))
                .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
@@ -197,11 +204,13 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                })
        );
-       bmb.addBuilder(new TextOutsideCircleButton.Builder()
+       bmb.addBuilder(new TextInsideCircleButton.Builder()
                .normalImageRes(R.drawable.camping_icon)
                .normalText("캠핑")
-//               .textSize(20)
-//               .buttonRadius(Util.dp2px(60))
+               .textSize(25)
+               .textRect(new Rect(Util.dp2px(35), Util.dp2px(130), Util.dp2px(150), Util.dp2px(80)))
+               .buttonRadius(Util.dp2px(90))
+               .imageRect(new Rect(Util.dp2px(40), Util.dp2px(15), Util.dp2px(140), Util.dp2px(140)))
                .listener(new OnBMClickListener() {
                    @Override
                    public void onBoomButtonClick(int index) {
@@ -217,11 +226,13 @@ public class MainActivity2 extends AppCompatActivity {
                })
 
        );
-       bmb.addBuilder(new TextOutsideCircleButton.Builder()
+       bmb.addBuilder(new TextInsideCircleButton.Builder()
                .normalImageRes(R.drawable.rural_icon)
                .normalText("농어촌")
-//               .textSize(20)
-//               .buttonRadius(Util.dp2px(60))
+               .textSize(25)
+               .textRect(new Rect(Util.dp2px(35), Util.dp2px(130), Util.dp2px(150), Util.dp2px(80)))
+               .buttonRadius(Util.dp2px(90))
+               .imageRect(new Rect(Util.dp2px(40), Util.dp2px(30), Util.dp2px(150), Util.dp2px(150)))
                .listener(new OnBMClickListener() {
                    @Override
                    public void onBoomButtonClick(int index) {
@@ -235,11 +246,13 @@ public class MainActivity2 extends AppCompatActivity {
                    }
                })
        );
-        bmb.addBuilder(new TextOutsideCircleButton.Builder()
+        bmb.addBuilder(new TextInsideCircleButton.Builder()
                 .normalImageRes(R.drawable.show_icon)
                 .normalText("공연")
-//                .textSize(20)
-//                .buttonRadius(Util.dp2px(60))
+                .textSize(25)
+                .textRect(new Rect(Util.dp2px(35), Util.dp2px(130), Util.dp2px(150), Util.dp2px(80)))
+                .buttonRadius(Util.dp2px(90))
+                .imageRect(new Rect(Util.dp2px(45), Util.dp2px(20), Util.dp2px(130), Util.dp2px(130)))
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {

@@ -117,7 +117,7 @@ public class ShareActivity extends AppCompatActivity {
     public void getPhotoLog(){
         ArrayList<Photo> pathArrayList = new ArrayList<>();
         RetrofitClient retrofitClient = new RetrofitClient();
-        Call<ArrayList<Photo>> call =  retrofitClient.service.getPhotoLog();
+        Call<ArrayList<Photo>> call =  retrofitClient.service.getMyPhotoLog(GlobalApplication.getUser_number());
         call.enqueue(new Callback<ArrayList<Photo>>() {
             @Override
             public void onResponse(Call<ArrayList<Photo>> call, Response<ArrayList<Photo>> response) {

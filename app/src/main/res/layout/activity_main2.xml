@@ -35,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="700dp"
+                app:bmb_buttonEnum="textInsideCircle"
                 android:layout_marginTop="70dp"
-                app:bmb_buttonEnum="textOutsideCircle"
                 app:bmb_buttonPlaceEnum="buttonPlace_sc_6_1"
                 app:bmb_piecePlaceEnum="piecePlace_dot_6_1" />
 
