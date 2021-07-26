@@ -1,0 +1,3 @@
+rootProject.name = "Nolmyeon"
+include ':app'
+include ':fab-loading', ':sample'

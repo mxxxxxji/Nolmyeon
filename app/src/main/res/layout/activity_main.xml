@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/activity_main"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/main_color">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:background="@color/main_color"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/marker"></ImageView>
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="현재위치"
+                android:textSize="35dp"
+                android:textColor="#ffffff"
+                android:shadowColor="#000000">
+            </TextView>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/setting_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:src="@drawable/setting"
+            android:layout_marginLeft="700dp"
+            android:background="@android:color/transparent"></ImageButton>
+    </FrameLayout>
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:background="#ffffff"/>-->
+<!--  -->
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:background="#ffffff"/>-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@color/main_color">
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/medium"
+                        android:text="안녕하세요"
+                        android:textSize="50dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="60dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:text="홍길동 님 ,"
+                        android:textSize="50dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="125dp">
+
+                    </TextView>
+                    <ImageButton
+                        android:id="@+id/stamp_btn"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginLeft="500dp"
+                        android:layout_marginTop="65dp"
+                        android:background="#00ff0000"
+                        android:src="@drawable/qr_code"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter">
+                    </ImageButton>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="120dp"
+                        android:layout_marginLeft="640dp"
+                        android:fontFamily="@font/medium"
+                        android:text="QR 스캔하고\n스탬프 받기"
+                        android:textSize="25dp"
+                        android:textColor="#ffffff"
+                        ></TextView>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="40dp"
+                    android:background="@drawable/rounded_background"
+                    android:elevation="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:text="나의 현재 순위"
+                        android:textSize="40dp"
+                        android:textColor="@color/black"
+                        android:layout_margin="30dp"
+                        android:shadowColor="@color/gray"
+                        android:shadowDx="1"
+                        android:shadowDy="2"
+                        android:shadowRadius="0.1">
+                    </TextView>
+                    <FrameLayout
+                        android:layout_width="350dp"
+                        android:layout_height="350dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/animation_view"
+                            android:layout_width="350dp"
+                            android:layout_height="350dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_fileName="star.json"
+                            app:lottie_loop="true" />
+
+                        <TextView
+                            android:id="@+id/myrank"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/bold"
+                            android:gravity="center"
+                            android:text="0위"
+                            android:textColor="@color/black"
+                            android:textSize="45dp"></TextView>
+
+                    </FrameLayout>
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchart"
+                        android:layout_width="350dp"
+                        android:layout_height="260dp"
+                        android:layout_marginLeft="330dp"
+                        android:layout_marginTop="30dp" />
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+
+                    <FrameLayout
+                        android:id="@+id/framelayout1"
+                        android:layout_width="330dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:background="@drawable/rounded_background"
+                        android:elevation="10dp">
+                        <Button
+                            android:id="@+id/list_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00ff0000"
+                            >
+                        </Button>
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/medium"
+                            android:text="주변 체험 학습\n목록 보기"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="30dp"
+                          >
+
+                        </TextView>
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/list"
+                            android:layout_marginLeft="200dp">
+                        </ImageView>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/framelayout2"
+                        android:layout_toRightOf="@+id/framelayout1"
+                        android:layout_width="330dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/rounded_background"
+                        android:elevation="10dp">
+                        <Button
+                            android:id="@+id/map_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00ff0000"
+                            >
+                        </Button>
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/medium"
+                            android:text="주변 체험 학습\n지도 보기"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="30dp"
+                           >
+
+                        </TextView>
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/map"
+                            android:layout_marginLeft="190dp">
+                        </ImageView>
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+
+                    <FrameLayout
+                        android:id="@+id/framelayout3"
+                        android:layout_width="330dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:background="@drawable/rounded_background"
+                        android:elevation="10dp">
+                        <Button
+                            android:id="@+id/photo_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00ff0000"
+                            >
+                        </Button>
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/medium"
+                            android:text="체험 학습 사진\n공유하기"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="30dp"
+                            android:shadowColor="@color/gray">
+
+                        </TextView>
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="130dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="180dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_fileName="gallery.json"
+                            app:lottie_loop="true"
+                            app:lottie_speed="0.5"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/framelayout4"
+                        android:layout_toRightOf="@+id/framelayout3"
+                        android:layout_width="330dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/rounded_background"
+                        android:elevation="10dp">
+                        <Button
+                            android:id="@+id/share_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00ff0000"
+                            >
+                        </Button>
+                        <TextView
+                            android:layout_width="140dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/medium"
+                            android:text="친구 체험 학습\n사진 보기"
+                            android:textSize="25dp"
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="30dp"
+                            android:shadowColor="@color/gray">
+
+                        </TextView>
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="130dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="180dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_fileName="friends.json"
+                            app:lottie_loop="true"
+                            app:lottie_speed="0.5"/>
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_margin="40dp"
+                    android:background="@drawable/rounded_background"
+                    android:elevation="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/animation_rank"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:lottie_autoPlay="true"
+                                app:lottie_fileName="animation.json"
+                                app:lottie_loop="true" />
+
+                            <ImageView
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:layout_marginTop="140dp"
+                                android:layout_marginLeft="60dp"
+                                android:src="@drawable/first">
+                            </ImageView>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_margin="40dp"
+                                android:fontFamily="@font/bold"
+                                android:textColor="@color/black"
+                                android:text="축하합니다"
+                                android:textSize="40dp"
+                                android:shadowColor="@color/gray"
+                                android:shadowDx="1"
+                                android:shadowDy="2"
+                                android:shadowRadius="0.1">
+
+                            </TextView>
+
+                            <Button
+                                android:id="@+id/ranking_btn"
+                                android:layout_width="200dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="490dp"
+                                android:layout_marginTop="30dp"
+                                android:fontFamily="@font/medium"
+                                android:text="랭킹 더 보기"
+                                android:textSize="25dp"
+                                android:textColor="@color/main_color"
+                                android:background="@drawable/button_custom">
+                            </Button>
+                            <TextView
+                                android:id="@+id/first"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginTop="280dp"
+                                android:gravity="center"
+                                android:fontFamily="@font/medium"
+                                android:text="USER 1"
+                                android:textSize="30dp"
+                                android:textColor="@color/black">
+                            </TextView>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="120dp"
+                                android:layout_marginLeft="250dp"
+                                android:background="@color/theme_gray"/>
+                            <ImageView
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:layout_marginTop="140dp"
+                                android:layout_marginLeft="300dp"
+                                android:src="@drawable/second">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/second"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="270dp"
+                                android:layout_marginTop="280dp"
+                                android:gravity="center"
+                                android:fontFamily="@font/medium"
+                                android:text="USER 2"
+                                android:textSize="30dp"
+                                android:textColor="@color/black">
+                            </TextView>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="200dp"
+                                android:layout_marginTop="120dp"
+                                android:layout_marginLeft="480dp"
+                                android:background="@color/theme_gray"/>
+                            <ImageView
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:layout_marginTop="140dp"
+                                android:layout_marginLeft="530dp"
+                                android:src="@drawable/third">
+                            </ImageView>
+                            <TextView
+                                android:id="@+id/third"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="500dp"
+                                android:layout_marginTop="280dp"
+                                android:gravity="center"
+                                android:fontFamily="@font/medium"
+                                android:text="USER 3"
+                                android:textSize="30dp"
+                                android:textColor="@color/black">
+                            </TextView>
+                        </FrameLayout>
+
+
+
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "326510523849",
+    "project_id": "nolmyeon",
+    "storage_bucket": "nolmyeon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326510523849:android:2eb98b4c430e2469242418",
+        "android_client_info": {
+          "package_name": "com.example.nolmyeon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326510523849-n09ffm4f7lptccpfvp4bs2thusdfspbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvTBqb8gVNRcYgaDFJ6wxjtQK6NvpwiiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326510523849-n09ffm4f7lptccpfvp4bs2thusdfspbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

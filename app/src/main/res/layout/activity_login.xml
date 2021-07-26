@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/main_color">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="130dp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/one"
+            android:gravity="center"
+            android:shadowColor="#000000"
+            android:text="주말에 놀면 뭐하니?"
+            android:textColor="@color/white"
+            android:textSize="80dp"></TextView>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp">
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="main.json"
+            app:lottie_loop="true">
+        </com.airbnb.lottie.LottieAnimationView>
+    </FrameLayout>
+    <ImageButton
+        android:id="@+id/btn_login"
+        android:layout_width="300dp"
+        android:layout_marginTop="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/kakao_login_medium_wide"
+        android:gravity="center" />
+
+</LinearLayout>

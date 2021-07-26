@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/framelayout">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <include  layout="@layout/custom_title"/>
+<!--        <Button-->
+<!--            android:id="@+id/position_btn"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_margin="30dp">-->
+<!--        </Button>-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/map_view"
+               >
+            </FrameLayout>
+
+            <com.nightonke.boommenu.BoomMenuButton
+                android:id="@+id/bmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="700dp"
+                android:layout_marginTop="70dp"
+                app:bmb_buttonEnum="textOutsideCircle"
+                app:bmb_buttonPlaceEnum="buttonPlace_sc_6_1"
+                app:bmb_piecePlaceEnum="piecePlace_dot_6_1" />
+
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/page"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rounded_background"
+        android:elevation="10dp"
+        android:visibility="invisible"
+        android:layout_margin="40dp"
+        android:onClick="mOnClose">
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:id="@+id/page_child">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            </FrameLayout>
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/bold"
+                android:text="Title"
+                android:textColor="@color/black"
+                android:textSize="35dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </FrameLayout>
+            <TextView
+                android:id="@+id/address_tv"
+                android:text="주소"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/light"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/phoneNumber_tv"
+                android:text="전화번호"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/light"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/image_iv"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+
+            android:layout_margin="20dp"></ImageView>
+
+    </LinearLayout>
+
+
+</FrameLayout>
+
