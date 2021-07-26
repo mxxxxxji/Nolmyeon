@@ -99,6 +99,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="2dp"
                 android:text="전화번호"
+                android:autoLink="phone"
                 android:fontFamily="@font/medium"
                 android:textColor="@color/black"
                 android:textSize="25dp"
