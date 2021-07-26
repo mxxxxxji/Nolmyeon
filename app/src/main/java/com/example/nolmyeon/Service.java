@@ -56,6 +56,6 @@ public interface Service {
     @GET("/photolog")
     Call<ArrayList<Photo>> getPhotoLog();
     @GET("/MyPhotoLog")
-    Call<ArrayList<Photo>> getMyPhotoLog();
+    Call<ArrayList<Photo>> getMyPhotoLog(@Query("number")long userNumber);
 
 }
