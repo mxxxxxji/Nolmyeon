@@ -62,7 +62,7 @@ public interface Service {
     @GET("/scrap")
     Call<ArrayList<Scrap>> getScrap(@Query("number")long userNumber);
     @GET("/deleteScrap")
-    Call<ArrayList<Scrap>> deleteScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
+    Call<String> deleteScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
     @GET("/insertScrap")
     Call<String> insertScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
 }

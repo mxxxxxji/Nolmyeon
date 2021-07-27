@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.MyScrap"></activity>
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.MyPhotoActivity" />
         <activity android:name=".activity.MyMapActivity" />
         <activity android:name=".activity.LoadingActivity2" />
@@ -34,13 +35,10 @@
         <activity android:name=".activity.PhotoActivity" />
         <activity android:name=".activity.CustomQRScanActivity" /> <!-- <activity android:name=".MainMapActivity"></activity> -->
         <!-- &lt;!&ndash;        <activity android:name=".activity.MainActivity2"></activity>&ndash;&gt; -->
-
         <service
             android:name=".GpsTracker"
             android:enabled="true"
-            android:exported="true" />
-
-        <!-- 팝업 Activity -->
+            android:exported="true" /> <!-- 팝업 Activity -->
         <activity
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />

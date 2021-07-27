@@ -151,6 +151,7 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
                         Glide.with(context).load(R.drawable.scrap_orange2).into(iv_scrap);//스크랩표시
                         flag[position] = 0;
                         Toast.makeText(context, "스크랩이 취소 되었습니다", Toast.LENGTH_LONG).show();
+                        deleteScrap(GlobalApplication.getUser_number(), "exhibition", listData.get(position).getTitle());
                     }else{
                         Glide.with(context).load(R.drawable.scrap_orange).into(iv_scrap);//스크랩표시
                         flag[position] = 1;
@@ -191,6 +192,22 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
                 }
             }
 
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
+    }
+    public void deleteScrap(long number, String category, String title){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<String> call = retrofitClient.service.deleteScrap(number, category, title);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    Log.d("TAG_SCRAP", response.body().toString());
+                }
+            }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d("TAG_SCRAP", t.getMessage());

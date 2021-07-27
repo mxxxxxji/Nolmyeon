@@ -289,18 +289,7 @@ public class MainActivity extends AppCompatActivity {
         //--------------------------------------------------------------------------------------------
 
         Log.d("TAGSHOW", GlobalApplication.getShowArrayList().toString());
-//        if(app.getExhibitionList().toString() == null){
-//
-//        }else if(app.getRuralArrayList().toString() == null){
-//
-//        }else if(app.getRuralArrayList().toString() == null){
-//
-//        } else if(app.getRuralArrayList().toString() == null){
-//
-//        }
-//        else if(app.getRuralArrayList().toString() == null){
-//
-//        }
+
         getPhotoLog();
         getScrap();
     }
@@ -363,28 +352,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-//    public void downloadImg() {
-//        ArrayList<MyData> myDataset = new ArrayList<>();
-//        for (int i = 1; i < 4; i++) {
-//            FirebaseStorage storage = FirebaseStorage.getInstance();
-//            StorageReference storageReference = storage.getReference();
-//
-//            int finalI = i;
-//            storageReference.child("photo/" + finalI + ".png").getDownloadUrl()
-//                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                        @Override
-//                        public void onSuccess(Uri uri) {
-//                            myDataset.add(new MyData(finalI + ".png", uri));
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull @NotNull Exception e) {
-//
-//                }
-//            });
-//        }
-//        GlobalApplication.setMyDataset(myDataset);
-//    }
+
     private void getExhibitionImage(){
         Log.d("TAGERROR", "555555");
         Retrofit retrofitImage;
@@ -418,9 +386,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<ImageSearchResponse> call, Response<ImageSearchResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             if (response.body().documents.size() != 0) {
-//                            Log.d("getimage_title",query);
-//                            Log.d("getimage", response.isSuccessful()+"");
-//                            Log.d("getimage", response.body().documents.get(0).getImage_url().toString());
                                 ArrayList<String> imageUrl = new ArrayList<>();
                                 for(int i=0; i<response.body().documents.size(); i++){
                                     imageUrl.add(response.body().documents.get(i).getImage_url());
@@ -428,12 +393,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 exhibitionArrayList.get(finalI).setUrl(imageUrl);
                             } else {
-//                            Log.d("getimage", response.isSuccessful()+"");
-//                            Log.d("getimage", "Campingonresponse " + "이미지 없음");
                                 String image_url = "https://da62mall.com/mobile/icon/noimage.gif";
-                                //  imageUrlList.add(image_url);
-                                // listUp(image_url);
-                                // campingArrayList.add(finalI, setImageUrl(image_url)
                                 ArrayList<String> imageUrl = new ArrayList<>();
                                 for(int i=0; i<response.body().documents.size(); i++){
                                     imageUrl.add(image_url);
