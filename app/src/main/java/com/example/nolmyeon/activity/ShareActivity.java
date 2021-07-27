@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.location.Location;
@@ -52,6 +53,8 @@ public class ShareActivity extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
     ArrayList<Photo> pathArrayList = new ArrayList<>();
     ArrayList<MyData> myDataset = new ArrayList<>();
+    SwipeRefreshLayout swipeRefreshLayout;
+
     //뒤로가기
     ImageButton backBtn;
     ImageButton myBtn;
@@ -62,7 +65,7 @@ public class ShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         getPhotoLog();
-
+        swipeRefreshLayout = findViewById(R.id.refresh_layout);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // use a linear layout manager
         gridLayoutManager = new GridLayoutManager(this, 3);
@@ -102,7 +105,19 @@ public class ShareActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();
+                for(int i=0; i<GlobalApplication.getMyDataset().size(); i++){
+                    Log.d("TAG_SHARE", pathArrayList.get(i).uri.toString());
+                }
 
+                // specify an adapter (see also next example)
+                mAdapter = new ShareImageAdapter(getApplicationContext(),pathArrayList);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        });
 
     }
     public void downloadImg(String title, String path){

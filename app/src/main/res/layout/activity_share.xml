@@ -13,8 +13,8 @@
         android:background="@color/main_color">
         <ImageButton
             android:id="@+id/back_btn"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_vertical"
             android:scaleType="fitCenter"
             android:src="@drawable/back_btn"
@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="친구들 사진 보기"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:textColor="@color/white"
             ></TextView>
         <ImageButton
@@ -37,7 +37,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="640dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/photoadd"
+            android:src="@drawable/picture1"
             android:background="#00ff0000">
         </ImageButton>
         <ImageButton
@@ -51,9 +51,14 @@
             android:background="#00ff0000">
         </ImageButton>
     </FrameLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
