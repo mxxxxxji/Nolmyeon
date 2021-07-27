@@ -28,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.nolmyeon.GlobalApplication;
 import com.example.nolmyeon.GpsTracker;
 import com.example.nolmyeon.R;

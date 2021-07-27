@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class MyPhotoActivity extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
     ArrayList<Photo> pathArrayList = new ArrayList<>();
     ArrayList<MyData> myDataset = new ArrayList<>();
+    SwipeRefreshLayout swipeRefreshLayout;
     //뒤로가기
     ImageButton backBtn;
     @Override
@@ -46,6 +48,7 @@ public class MyPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_photo);
         getPhotoLog();
+        swipeRefreshLayout = findViewById(R.id.refresh_layout);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // use a linear layout manager
@@ -67,6 +70,20 @@ public class MyPhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();
+                for(int i=0; i<GlobalApplication.getMyDataset().size(); i++){
+                    Log.d("TAG_SHARE", pathArrayList.get(i).uri.toString());
+                }
+
+                // specify an adapter (see also next example)
+                mAdapter = new MyImageAdapter(getApplicationContext(),pathArrayList);
+                mRecyclerView.setAdapter(mAdapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

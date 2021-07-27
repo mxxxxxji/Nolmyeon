@@ -155,4 +155,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation  'com.github.bumptech.glide:glide:3.7.0'
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+
 }
