@@ -156,10 +156,19 @@ public class PhotoActivity extends Activity {
         Retrofit retrofit;
         Service service;
 
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.HEADERS);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
+
         //객체 생성
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://project-intern02.wjthinkbig.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build();
         service = retrofit.create(Service.class);
 

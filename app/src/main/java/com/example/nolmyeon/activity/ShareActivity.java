@@ -65,7 +65,7 @@ public class ShareActivity extends AppCompatActivity {
         load = findViewById(R.id.loadimg);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // use a linear layout manager
-        gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager = new GridLayoutManager(this, 3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
         ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();

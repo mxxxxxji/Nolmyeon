@@ -9,6 +9,7 @@ import com.example.nolmyeon.model.Festival;
 import com.example.nolmyeon.model.MyData;
 import com.example.nolmyeon.model.PointData;
 import com.example.nolmyeon.model.Rural;
+import com.example.nolmyeon.model.Scrap;
 import com.example.nolmyeon.model.Show;
 import com.example.nolmyeon.model.Stamp;
 import com.example.nolmyeon.model.User;
@@ -36,6 +37,7 @@ public class GlobalApplication extends Application {
     private static ArrayList<MyData> myDataset = new ArrayList<>();
     private static ArrayList<Ranker> rankerArrayList = new ArrayList<>();
     private static ArrayList<Integer> exhibitionFlag = new ArrayList<>();
+    private static ArrayList<Scrap> scrapArrayList = new ArrayList<>();
     //사용자 정보
     public static String user_name;
     public static long user_number;
@@ -213,6 +215,14 @@ public class GlobalApplication extends Application {
 
     public static void setExhibitionFlag(ArrayList<Integer> exhibitionFlag) {
         GlobalApplication.exhibitionFlag = exhibitionFlag;
+    }
+
+    public static ArrayList<Scrap> getScrapArrayList() {
+        return scrapArrayList;
+    }
+
+    public static void setScrapArrayList(ArrayList<Scrap> scrapArrayList) {
+        GlobalApplication.scrapArrayList = scrapArrayList;
     }
 
     //-------------------------------------------------------------------------------------------------

@@ -5,6 +5,7 @@ import com.example.nolmyeon.model.Exhibition;
 import com.example.nolmyeon.model.Festival;
 import com.example.nolmyeon.model.Photo;
 import com.example.nolmyeon.model.Rural;
+import com.example.nolmyeon.model.Scrap;
 import com.example.nolmyeon.model.Show;
 import com.example.nolmyeon.model.Stamp;
 import com.example.nolmyeon.model.User;
@@ -58,4 +59,10 @@ public interface Service {
     @GET("/MyPhotoLog")
     Call<ArrayList<Photo>> getMyPhotoLog(@Query("number")long userNumber);
 
+    @GET("/scrap")
+    Call<ArrayList<Scrap>> getScrap(@Query("number")long userNumber);
+    @GET("/deleteScrap")
+    Call<ArrayList<Scrap>> deleteScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
+    @GET("/insertScrap")
+    Call<String> insertScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
 }

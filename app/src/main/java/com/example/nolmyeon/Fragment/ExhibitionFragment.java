@@ -20,14 +20,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nolmyeon.GlobalApplication;
 import com.example.nolmyeon.ImageSearchResponse;
 import com.example.nolmyeon.R;
+import com.example.nolmyeon.RetrofitClient;
 import com.example.nolmyeon.Service;
 import com.example.nolmyeon.adapter.ExhibitionViewAdapter;
 import com.example.nolmyeon.model.Exhibition;
 import com.example.nolmyeon.model.Rural;
+import com.example.nolmyeon.model.Scrap;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
@@ -82,5 +85,6 @@ public class ExhibitionFragment extends Fragment {
         if (context instanceof Activity) {
         }
     }
+
 
 }

@@ -16,24 +16,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.nolmyeon.GlobalApplication;
+import com.example.nolmyeon.OnScrapClickListener;
 import com.example.nolmyeon.PopupActivity;
+import com.example.nolmyeon.RetrofitClient;
 import com.example.nolmyeon.activity.ImageViewerActivity;
 import com.example.nolmyeon.model.Exhibition;
 import com.example.nolmyeon.R;
+import com.example.nolmyeon.model.Scrap;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAdapter.Holder>{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAdapter.Holder>implements OnScrapClickListener{
     private ArrayList<Exhibition> listData = new ArrayList<>();
     private String url = "";
     Context context;
-    private ArrayList<Integer> flag = new ArrayList<>();
-
+    int[] flag;
+    OnScrapClickListener listener;
     public ExhibitionViewAdapter(Context context, ArrayList<Exhibition> exhibitionsList) {
         this.context = context;
         this.listData = exhibitionsList;
+        flag = new int[listData.size()];
+    }
+
+    public void setOnScrapClickListener(OnScrapClickListener listener){
+        this.listener = listener;
     }
 
     @NonNull
@@ -48,6 +60,8 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
         return holder;
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull ExhibitionViewAdapter.Holder holder, int position) {
         if(listData.get(position).getUrl() != null){
@@ -58,10 +72,32 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
         holder.tv_title.setText(listData.get(position).getTitle());
         holder.tv_address.setText(listData.get(position).getRdnmadr());
         holder.tv_phoneNumber.setText(listData.get(position).getPhoneNumber());
+        Log.d("TAG_SCRAP_SIZE",GlobalApplication.getScrapArrayList().size()+"");
+        if(GlobalApplication.getScrapArrayList().size() != 0){
+            for(int i=0; i< GlobalApplication.getScrapArrayList().size(); i++) {
+                Log.d("TAG_SCRAP",listData.get(position).getTitle()+", "+GlobalApplication.getScrapArrayList().get(i).getTitle());
+                if(listData.get(position).getTitle().equals(GlobalApplication.getScrapArrayList().get(i).getTitle())){
+                    Glide.with(context).load(R.drawable.scrap_orange).into(holder.iv_scrap);
+                    flag[position] = 1;
+                }
+            }
+        }
+
     }
     @Override
     public int getItemCount() {
         return listData.size();
+    }
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public void onExhibitionScrapClick(Holder holder, View view, int position) {
+        if(listener!=null){
+            listener.onExhibitionScrapClick(holder,view,position);
+        }
     }
 
     public class Holder extends RecyclerView.ViewHolder{
@@ -69,6 +105,7 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
         TextView tv_address;
         TextView tv_phoneNumber;
         ImageView iv_image;
+        ImageView iv_scrap;
 
         public Holder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -76,6 +113,7 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
             tv_title = itemView.findViewById(R.id.item_title);
             tv_address = itemView.findViewById(R.id.item_rdnmadr);
             tv_phoneNumber = itemView.findViewById(R.id.item_phoneNumber);
+            iv_scrap = itemView.findViewById(R.id.item_scrap);
 
 
             iv_image.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +142,59 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
                     }
                 }
             });
+            iv_scrap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAbsoluteAdapterPosition();
+                    getScrap();
+                    if(flag[position]==1){//이미 스크랩된 아이템
+                        Glide.with(context).load(R.drawable.scrap_orange2).into(iv_scrap);//스크랩표시
+                        flag[position] = 0;
+                        Toast.makeText(context, "스크랩이 취소 되었습니다", Toast.LENGTH_LONG).show();
+                    }else{
+                        Glide.with(context).load(R.drawable.scrap_orange).into(iv_scrap);//스크랩표시
+                        flag[position] = 1;
+                        Toast.makeText(context, "스크랩 되었습니다", Toast.LENGTH_LONG).show();
+                        insertScrap(GlobalApplication.getUser_number(), "exhibition", listData.get(position).getTitle());
+                    }
+                }
+            });
 
 
         }
+    }
 
+    public void getScrap(){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<ArrayList<Scrap>> call = retrofitClient.service.getScrap(GlobalApplication.getUser_number());
+        call.enqueue(new Callback<ArrayList<Scrap>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Scrap>> call, Response<ArrayList<Scrap>> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    GlobalApplication.setScrapArrayList(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<Scrap>> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
+    }
+    public void insertScrap(long number, String category, String title){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<String> call = retrofitClient.service.insertScrap(number, category, title);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    Log.d("TAG_SCRAP", response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
     }
 }

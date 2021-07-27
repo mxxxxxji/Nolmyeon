@@ -35,6 +35,7 @@ import com.example.nolmyeon.model.Festival;
 import com.example.nolmyeon.model.MyData;
 import com.example.nolmyeon.model.Photo;
 import com.example.nolmyeon.model.Rural;
+import com.example.nolmyeon.model.Scrap;
 import com.example.nolmyeon.model.Show;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -301,9 +302,24 @@ public class MainActivity extends AppCompatActivity {
 //
 //        }
         getPhotoLog();
-
+        getScrap();
     }
-
+    public void getScrap(){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<ArrayList<Scrap>> call = retrofitClient.service.getScrap(GlobalApplication.getUser_number());
+        call.enqueue(new Callback<ArrayList<Scrap>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Scrap>> call, Response<ArrayList<Scrap>> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    GlobalApplication.setScrapArrayList(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<Scrap>> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
+    }
     public void downloadImg(String title, String path){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference();
