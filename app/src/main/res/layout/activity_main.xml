@@ -276,7 +276,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:fontFamily="@font/medium"
-                            android:text="체험 학습 사진\n공유하기"
+                            android:text="스크랩한\n체험학습 보기"
                             android:textSize="25dp"
                             android:textColor="@color/black"
                             android:layout_marginLeft="30dp"

@@ -47,7 +47,6 @@ import retrofit2.Response;
 
 public class ShareActivity extends AppCompatActivity {
 
-    ImageView load;
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     GridLayoutManager gridLayoutManager;
@@ -56,13 +55,14 @@ public class ShareActivity extends AppCompatActivity {
     //뒤로가기
     ImageButton backBtn;
     ImageButton myBtn;
+    ImageButton addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         getPhotoLog();
-        load = findViewById(R.id.loadimg);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // use a linear layout manager
         gridLayoutManager = new GridLayoutManager(this, 3);
@@ -79,6 +79,7 @@ public class ShareActivity extends AppCompatActivity {
 
         backBtn = findViewById(R.id.back_btn);
         myBtn = findViewById(R.id.my_btn);
+        addBtn = findViewById(R.id.add_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +90,14 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyPhotoActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PhotoActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }

@@ -58,11 +58,14 @@ public interface Service {
     Call<ArrayList<Photo>> getPhotoLog();
     @GET("/MyPhotoLog")
     Call<ArrayList<Photo>> getMyPhotoLog(@Query("number")long userNumber);
+    @GET("/deletePhoto")
+    Call<String> deletePhoto(@Query("number")long userNumber,@Query("title") String title);
 
     @GET("/scrap")
     Call<ArrayList<Scrap>> getScrap(@Query("number")long userNumber);
     @GET("/deleteScrap")
-    Call<String> deleteScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
+    Call<String> deleteScrap(@Query("number")long userNumber, @Query("category") String category,  @Query("title") String title);
     @GET("/insertScrap")
     Call<String> insertScrap(@Query("number")long userNumber, @Query("category") String category, @Query("title") String title);
+
 }

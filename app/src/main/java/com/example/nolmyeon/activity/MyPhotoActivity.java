@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyPhotoActivity extends AppCompatActivity {
-    ImageView load;
+
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     GridLayoutManager gridLayoutManager;
@@ -46,7 +46,7 @@ public class MyPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_photo);
         getPhotoLog();
-        load = findViewById(R.id.loadimg);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // use a linear layout manager
         gridLayoutManager = new GridLayoutManager(this, 3);
@@ -114,4 +114,5 @@ public class MyPhotoActivity extends AppCompatActivity {
             }
         });
     }
+
 }
