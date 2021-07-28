@@ -340,6 +340,7 @@ public class MainActivity extends AppCompatActivity {
                     pathArrayList.addAll(response.body());
                     for(int i=0; i<pathArrayList.size(); i++){
                         Log.d("dataset", pathArrayList.get(i).getTitle());
+                        GlobalApplication.setPhotoArrayList(pathArrayList);
                         downloadImg(pathArrayList.get(i).getTitle(), pathArrayList.get(i).getImgpath());
                     }
 

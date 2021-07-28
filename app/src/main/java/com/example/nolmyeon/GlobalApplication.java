@@ -7,6 +7,7 @@ import com.example.nolmyeon.model.Camping;
 import com.example.nolmyeon.model.Exhibition;
 import com.example.nolmyeon.model.Festival;
 import com.example.nolmyeon.model.MyData;
+import com.example.nolmyeon.model.Photo;
 import com.example.nolmyeon.model.PointData;
 import com.example.nolmyeon.model.Rural;
 import com.example.nolmyeon.model.Scrap;
@@ -38,6 +39,7 @@ public class GlobalApplication extends Application {
     private static ArrayList<Ranker> rankerArrayList = new ArrayList<>();
     private static ArrayList<Integer> exhibitionFlag = new ArrayList<>();
     private static ArrayList<Scrap> scrapArrayList = new ArrayList<>();
+    private static ArrayList<Photo> photoArrayList = new ArrayList<>();
     //사용자 정보
     public static String user_name;
     public static long user_number;
@@ -223,6 +225,14 @@ public class GlobalApplication extends Application {
 
     public static void setScrapArrayList(ArrayList<Scrap> scrapArrayList) {
         GlobalApplication.scrapArrayList = scrapArrayList;
+    }
+
+    public static ArrayList<Photo> getPhotoArrayList() {
+        return photoArrayList;
+    }
+
+    public static void setPhotoArrayList(ArrayList<Photo> photoArrayList) {
+        GlobalApplication.photoArrayList = photoArrayList;
     }
 
     //-------------------------------------------------------------------------------------------------
