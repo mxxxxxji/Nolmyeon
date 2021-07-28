@@ -116,6 +116,7 @@ public class ShareActivity extends AppCompatActivity {
                 // specify an adapter (see also next example)
                 mAdapter = new ShareImageAdapter(getApplicationContext(),pathArrayList);
                 mRecyclerView.setAdapter(mAdapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
