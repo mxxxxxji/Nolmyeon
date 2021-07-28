@@ -160,8 +160,8 @@
 
                         <TextView
                             android:id="@+id/myrank"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="345dp"
+                            android:layout_height="344dp"
                             android:fontFamily="@font/bold"
                             android:gravity="center"
                             android:text="0위"

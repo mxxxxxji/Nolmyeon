@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".activity.MyScrapActivity">
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="스크랩한 체험 학습 보기"
-            android:textSize="40dp"
+            android:textSize="35dp"
             android:textColor="@color/white">
         </TextView>
     </FrameLayout>
@@ -36,7 +37,7 @@
         android:background="@color/theme_gray"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
