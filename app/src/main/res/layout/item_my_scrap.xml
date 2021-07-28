@@ -68,7 +68,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/item_rdnmadr"
+                android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -79,14 +79,13 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="2dp"
-                android:text="주소"
                 android:fontFamily="@font/medium"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:singleLine="true">
             </TextView>
             <TextView
-                android:id="@+id/item_date"
+                android:id="@+id/text2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -97,14 +96,13 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="2dp"
-                android:text="개최 기간"
                 android:fontFamily="@font/medium"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:singleLine="true">
             </TextView>
             <TextView
-                android:id="@+id/item_phone_number"
+                android:id="@+id/text3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -115,7 +113,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="2dp"
-                android:text="전화번호"
                 android:autoLink="phone"
                 android:fontFamily="@font/medium"
                 android:textColor="@color/black"

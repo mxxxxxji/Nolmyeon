@@ -37,6 +37,7 @@ import com.example.nolmyeon.R;
 import com.example.nolmyeon.model.Camping;
 import com.example.nolmyeon.model.Exhibition;
 import com.example.nolmyeon.model.Festival;
+import com.example.nolmyeon.model.Info;
 import com.example.nolmyeon.model.Rural;
 import com.example.nolmyeon.model.Show;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -383,56 +384,56 @@ public class MainActivity2 extends AppCompatActivity {
         for(Exhibition e : exhibitionArrayList){
             if((e.getTitle()).equals(title)){
                 findExhibition = e;
-                info.title = findExhibition.getTitle();
-                info.address =  findExhibition.getRdnmadr();
-                info.number = findExhibition.getPhoneNumber();
-                info.description = findExhibition.getFcltyInfo();
-                info.holiday = findExhibition.getRstdeInfo();
-                info.imageUrl = findExhibition.getUrl().get(0);
+                info.setTitle(findExhibition.getTitle());
+                info.setAddress(findExhibition.getRdnmadr());
+                info.setNumber(findExhibition.getPhoneNumber());
+                info.setDescription(findExhibition.getFcltyInfo());
+                info.setHoliday(findExhibition.getRstdeInfo());
+                info.setImageUrl(findExhibition.getUrl().get(0));
                 break;
             }
         }
         for( Festival f : festivalArrayList){
             if((f.getFstvlNm()).equals(title)){
                 findFestival = f;
-                info.title = findFestival.getFstvlNm();
-                info.address =  findFestival.getRdnmadr();
-                info.number = findFestival.getPhoneNumber();
-                info.description = findFestival.getFstvlCo();
-                info.imageUrl = findFestival.getUrl().get(0);
+                info.setTitle(findFestival.getFstvlNm());
+                info.setAddress(findFestival.getRdnmadr());
+                info.setNumber(findFestival.getPhoneNumber());
+                info.setDescription(findFestival.getFstvlCo());
+                info.setImageUrl(findFestival.getUrl().get(0));
                 break;
             }
         }
         for( Camping c : campingArrayList){
             if((c.getCampgNm()).equals(title)){
                 findCamping = c;
-                info.title = findCamping.getCampgNm();
-                info.address = findCamping.getRdnmadr();
-                info.number = findCamping.getPhoneNumber();
-                info.description = findCamping.getCampgSe();
-                info.imageUrl = findCamping.getUrl().get(0);
+                info.setTitle(findCamping.getCampgNm());
+                info.setAddress(findCamping.getRdnmadr());
+                info.setNumber( findCamping.getPhoneNumber());
+                info.setDescription( findCamping.getCampgSe());
+                info.setImageUrl(findCamping.getUrl().get(0));
                 break;
             }
         }
         for( Rural r : ruralArrayList){
             if((r.getExprnVilageNm()).equals(title)){
                 findRural = r;
-                info.title = findRural.getExprnVilageNm();
-                info.address = findRural.getRdnmadr();
-                info.number = findRural.getHomepageUrl();
-                info.description = findRural.getExprnCn();
-                info.imageUrl = findRural.getUrl().get(0);
+                info.setTitle(findRural.getExprnVilageNm());
+                info.setAddress(findRural.getRdnmadr());
+                info.setNumber(findRural.getHomepageUrl());
+                info.setDescription(findRural.getExprnCn());
+                info.setImageUrl(findRural.getUrl().get(0));
                 break;
             }
         }
         for( Show s : showArrayList){
             if((s.getEventNm()).equals(title)){
                 findShow = s;
-                info.title = findShow.getEventNm();
-                info.address = findShow.getOpar();
-                info.number = findShow.getPhoneNumber();
-                info.description = findShow.getEventStartDate() +" ~ " + findShow.getEventEndDate();
-                info.imageUrl = findShow.getUrl().get(0);
+                info.setTitle(findShow.getEventNm());
+                info.setAddress(findShow.getOpar());
+                info.setNumber(findShow.getPhoneNumber());
+                info.setDescription(findShow.getEventStartDate() +" ~ " + findShow.getEventEndDate());
+                info.setImageUrl(findShow.getUrl().get(0));
                 break;
             }
         }
@@ -501,10 +502,10 @@ public class MainActivity2 extends AppCompatActivity {
             Log.d("TAGMAPVIEW1111",mapPOIItem.getItemName());
             Log.d("TAGMAPVIEW1111",mapPOIItem.getMapPoint().toString());
             Info info = search(mapPOIItem.getItemName());
-            title_tv.setText(info.title);
-            address_tv.setText(info.address);
-            phoneNumber_tv.setText(info.number);
-            Glide.with(page).load(info.imageUrl).into(image_iv);
+            title_tv.setText(info.getTitle());
+            address_tv.setText(info.getAddress());
+            phoneNumber_tv.setText(info.getNumber());
+            Glide.with(page).load(info.getImageUrl()).into(image_iv);
 
 
         }
@@ -526,40 +527,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
     //------------------------------------------------------------------------------------------------
-    public class Info{
-        private String title;
-        private String address;
-        private String number;
-        private String description;
-        private String holiday;
-        private String imageUrl;
 
-        public Info(String title, String address, String number, String description, String holiday, String imageUrl) {
-            this.title = title;
-            this.address = address;
-            this.number = number;
-            this.description = description;
-            this.holiday = holiday;
-            this.imageUrl = imageUrl;
-        }
-
-        public Info() {
-            this.title = null;
-            this.address = null;
-            this.number = null;
-            this.description = null;
-            this.holiday = null;
-            this.imageUrl = null;
-        }
-
-
-        @NonNull
-        @NotNull
-        @Override
-        public String toString() {
-            return super.toString();
-        }
-    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

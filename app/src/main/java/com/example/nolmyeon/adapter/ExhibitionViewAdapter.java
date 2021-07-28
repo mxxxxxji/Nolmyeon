@@ -142,6 +142,7 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
                     }
                 }
             });
+
             iv_scrap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

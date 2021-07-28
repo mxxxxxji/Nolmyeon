@@ -15,22 +15,31 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.nolmyeon.GlobalApplication;
 import com.example.nolmyeon.PopupActivity;
 import com.example.nolmyeon.R;
+import com.example.nolmyeon.RetrofitClient;
 import com.example.nolmyeon.activity.ImageViewerActivity;
 import com.example.nolmyeon.model.Festival;
+import com.example.nolmyeon.model.Scrap;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FestivalViewAdapter extends RecyclerView.Adapter<FestivalViewAdapter.Holder> {
 
     private ArrayList<Festival> listData = new ArrayList<>();
     Context context;
+    int[] flag;
 
     public FestivalViewAdapter(ArrayList<Festival> listData, Context context) {
         this.listData = listData;
         this.context = context;
+        flag = new int[listData.size()];
     }
 
 
@@ -76,6 +85,7 @@ public class FestivalViewAdapter extends RecyclerView.Adapter<FestivalViewAdapte
         TextView tv_address;
         TextView tv_date;
         TextView tv_phoneNumber;
+        ImageView iv_scrap;
 
         public Holder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -84,6 +94,7 @@ public class FestivalViewAdapter extends RecyclerView.Adapter<FestivalViewAdapte
             tv_address = itemView.findViewById(R.id.item_rdnmadr);
             tv_date = itemView.findViewById(R.id.item_date);
             tv_phoneNumber = itemView.findViewById(R.id.item_phone_number);
+            iv_scrap = itemView.findViewById(R.id.item_scrap);
             iv_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -110,6 +121,74 @@ public class FestivalViewAdapter extends RecyclerView.Adapter<FestivalViewAdapte
                     }
                 }
             });
+            iv_scrap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAbsoluteAdapterPosition();
+                    getScrap();
+                    if(flag[position]==1){//이미 스크랩된 아이템
+                        Glide.with(context).load(R.drawable.scrap_orange2).into(iv_scrap);//스크랩표시
+                        flag[position] = 0;
+                        Toast.makeText(context, "스크랩이 취소 되었습니다", Toast.LENGTH_LONG).show();
+                        deleteScrap(GlobalApplication.getUser_number(), "exhibition", listData.get(position).getFstvlNm());
+                    }else{
+                        Glide.with(context).load(R.drawable.scrap_orange).into(iv_scrap);//스크랩표시
+                        flag[position] = 1;
+                        Toast.makeText(context, "스크랩 되었습니다", Toast.LENGTH_LONG).show();
+                        insertScrap(GlobalApplication.getUser_number(), "exhibition", listData.get(position).getFstvlNm());
+                    }
+                }
+            });
+
         }
+    }
+    public void getScrap(){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<ArrayList<Scrap>> call = retrofitClient.service.getScrap(GlobalApplication.getUser_number());
+        call.enqueue(new Callback<ArrayList<Scrap>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Scrap>> call, Response<ArrayList<Scrap>> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    GlobalApplication.setScrapArrayList(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<Scrap>> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
+    }
+    public void insertScrap(long number, String category, String title){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<String> call = retrofitClient.service.insertScrap(number, category, title);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    Log.d("TAG_SCRAP", response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
+    }
+    public void deleteScrap(long number, String category, String title){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        Call<String> call = retrofitClient.service.deleteScrap(number, category, title);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful() && response.body() != null){
+                    Log.d("TAG_SCRAP", response.body().toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("TAG_SCRAP", t.getMessage());
+            }
+        });
     }
 }
