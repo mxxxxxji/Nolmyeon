@@ -38,7 +38,7 @@ public class MyPhotoActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     GridLayoutManager gridLayoutManager;
-    ArrayList<Photo> pathArrayList = new ArrayList<>();
+
     ArrayList<MyData> myDataset = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     //뒤로가기
@@ -47,6 +47,7 @@ public class MyPhotoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_photo);
+        Log.d("TAG_REFRESH", "갱신_____");
         getPhotoLog();
         swipeRefreshLayout = findViewById(R.id.refresh_layout);
 
@@ -107,6 +108,7 @@ public class MyPhotoActivity extends AppCompatActivity {
         GlobalApplication.setMyDataset(myDataset);
     }
     public void getPhotoLog(){
+        Log.d("TAG_REFRESH", "갱신");
         ArrayList<Photo> pathArrayList = new ArrayList<>();
         RetrofitClient retrofitClient = new RetrofitClient();
         Call<ArrayList<Photo>> call =  retrofitClient.service.getMyPhotoLog(GlobalApplication.getUser_number());

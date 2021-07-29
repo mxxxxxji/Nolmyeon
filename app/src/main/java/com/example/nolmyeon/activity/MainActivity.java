@@ -47,6 +47,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.EntryXIndexComparator;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -111,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
     private double longitude;
     TextView location_tv;
     TextView name_tv;
-
     ArrayList<MyData> myDataset = new ArrayList<>();
+    ArrayList<MyData> dataset = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -290,8 +291,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("TAGSHOW", GlobalApplication.getShowArrayList().toString());
 
-        getPhotoLog();
-        getScrap();
+        try {
+            getPhotoLog();
+            getScrap();
+        }catch (Exception e){
+
+        }
+
     }
     public void getScrap(){
         RetrofitClient retrofitClient = new RetrofitClient();
@@ -309,15 +315,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void downloadImg(String title, String path){
+    public void downloadImg(String title, String path, long number){
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference();
         storageReference.child(path).getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Log.d("dataset", title);
-                        myDataset.add(new MyData(title, uri));
+                        Log.d("TAG_PHOTO", title);
+                        if(number==GlobalApplication.getUser_number()){
+                            Log.d("TAG_PHOTO_MY", title+", "+number);
+                            myDataset.add(new MyData(title, uri));
+                        }
+                        dataset.add(new MyData(title, uri));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -326,22 +337,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         GlobalApplication.setMyDataset(myDataset);
+        GlobalApplication.setAllDataset(dataset);
     }
     public void getPhotoLog(){
-        ArrayList<Photo> pathArrayList = new ArrayList<>();
+        ArrayList<Photo> photoArrayList = new ArrayList<>();
+
         RetrofitClient retrofitClient = new RetrofitClient();
         Call<ArrayList<Photo>> call =  retrofitClient.service.getPhotoLog();
         call.enqueue(new Callback<ArrayList<Photo>>() {
             @Override
             public void onResponse(Call<ArrayList<Photo>> call, Response<ArrayList<Photo>> response) {
-                Log.d("dataset", response.isSuccessful()+"" );
+
                 if(response.isSuccessful() && response.body() != null){
-                    Log.d("dataset", response.body()+"" );
-                    pathArrayList.addAll(response.body());
-                    for(int i=0; i<pathArrayList.size(); i++){
-                        Log.d("dataset", pathArrayList.get(i).getTitle());
-                        GlobalApplication.setPhotoArrayList(pathArrayList);
-                        downloadImg(pathArrayList.get(i).getTitle(), pathArrayList.get(i).getImgpath());
+
+                    photoArrayList.addAll(response.body());
+                    GlobalApplication.setPhotoArrayList(photoArrayList);
+                    for(int i=0; i<photoArrayList.size(); i++){
+                        Log.d("TAG_PHOTO", photoArrayList.get(i).getTitle() +", " + photoArrayList.get(i).getCategory()+"-------------------------");
+                        downloadImg(photoArrayList.get(i).getTitle(), photoArrayList.get(i).getImgpath(), photoArrayList.get(i).getNumber());
                     }
 
                 }

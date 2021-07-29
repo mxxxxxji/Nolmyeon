@@ -36,6 +36,7 @@ public class GlobalApplication extends Application {
     private static ArrayList<Show> showArrayList = new ArrayList<>();
     private static ArrayList<Stamp> stampArrayList = new ArrayList<>();
     private static ArrayList<MyData> myDataset = new ArrayList<>();
+    private static ArrayList<MyData> allDataset = new ArrayList<>();
     private static ArrayList<Ranker> rankerArrayList = new ArrayList<>();
     private static ArrayList<Integer> exhibitionFlag = new ArrayList<>();
     private static ArrayList<Scrap> scrapArrayList = new ArrayList<>();
@@ -233,6 +234,14 @@ public class GlobalApplication extends Application {
 
     public static void setPhotoArrayList(ArrayList<Photo> photoArrayList) {
         GlobalApplication.photoArrayList = photoArrayList;
+    }
+
+    public static ArrayList<MyData> getAllDataset() {
+        return allDataset;
+    }
+
+    public static void setAllDataset(ArrayList<MyData> allDataset) {
+        GlobalApplication.allDataset = allDataset;
     }
 
     //-------------------------------------------------------------------------------------------------

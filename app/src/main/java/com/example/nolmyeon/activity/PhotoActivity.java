@@ -49,8 +49,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -140,8 +142,12 @@ public class PhotoActivity extends Activity {
                     category = spinner.getSelectedItem().toString();
                     contents = contents_et.getText().toString();
                     loadAlbum();
+                    long now = System.currentTimeMillis();
+                    Date mDate = new Date(now);
+                    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+                    String getTime = simpleDate.format(mDate);
                     sql = "insert into photo (number, title, category, imgpath, contents, date, latitude, longitude)" +
-                            " values("+GlobalApplication.getUser_number()+ ",'"+ title +"', '"+category+"', '"+ path+"', '"+ contents +"'," +date +"," +latitude+", "+longitude+")";
+                            " values("+GlobalApplication.getUser_number()+ ",'"+ title +"', '"+category+"', '"+ path+"', '"+ contents +"'," + getTime +"," +latitude+", "+longitude+")";
                     Log.d("TAG_PHOTO", sql);
                     putData(sql);
                 }

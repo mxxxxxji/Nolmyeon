@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.MyScrapActivity"></activity>
+        <activity android:name=".activity.ImageViewerActivity2"></activity>
+        <activity android:name=".activity.MyScrapActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.MyPhotoActivity" />
         <activity android:name=".activity.MyMapActivity" />
@@ -44,8 +45,7 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".StampActivity" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".CategoryActivity" />
-         <!-- android:theme="@style/AppTheme.NoActionBar"> -->
+        <activity android:name=".CategoryActivity" /> <!-- android:theme="@style/AppTheme.NoActionBar"> -->
         <activity android:name=".activity.MainActivity2" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>

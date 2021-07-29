@@ -1,6 +1,8 @@
 package com.example.nolmyeon.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +10,18 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCaller;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.nolmyeon.GlobalApplication;
+import com.example.nolmyeon.PopupActivity;
 import com.example.nolmyeon.R;
 import com.example.nolmyeon.RetrofitClient;
+import com.example.nolmyeon.activity.ImageViewerActivity2;
 import com.example.nolmyeon.model.MyData;
 
 import org.jetbrains.annotations.NotNull;
@@ -61,6 +67,21 @@ public class MyImageAdapter extends RecyclerView.Adapter<MyImageAdapter.Holder> 
             super(itemView);
             mImageView = (ImageView)itemView.findViewById(R.id.image);
             mTextView = (TextView)itemView.findViewById(R.id.textview);
+            mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAbsoluteAdapterPosition();
+                    if (position!=RecyclerView.NO_POSITION){
+                        Toast.makeText(context, position +"", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(context, ImageViewerActivity2.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("position", position);
+                        intent.putExtra("title", listData.get(position).getText());
+                        intent.putExtra("uri", listData.get(position).getUri());
+                        //((Activity)context).startActivityForResult(intent, IMAGE_ACTIVITY);
+                        context.startActivity(intent);
+                    }
+                }
+            });
 
             mImageView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

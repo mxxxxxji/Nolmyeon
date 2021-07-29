@@ -60,29 +60,29 @@ public class ShareImageAdapter extends RecyclerView.Adapter<ShareImageAdapter.Ho
                 holder.name_tv.setText(GlobalApplication.getAllUser().get(i).getName());
         }
        // for(int i=0; i<GlobalApplication.getPhotoArrayList().size(); i++){
-        try{
-            holder.category_tv.setText(photoData.get(position).getCategory());
-            String[] date = photoData.get(position).getDate().split("T");
-            holder.date_tv.setText(date[0]);
-
-            if(photoData.get(position).getCategory().equals("전시")){
-                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
-                holder.category_tv.setBackgroundColor(Color.parseColor("#3c9f2f")); }
-            if(photoData.get(position).getCategory().equals("축제")){
-                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
-                holder.category_tv.setBackgroundColor(Color.parseColor("#ffe02f")); }
-            if(photoData.get(position).getCategory().equals("농어촌")){
-                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
-                holder.category_tv.setBackgroundColor(Color.parseColor("#4c78a0")); }
-            if(photoData.get(position).getCategory().equals("캠핑")){
-                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
-                holder.category_tv.setBackgroundColor(Color.parseColor("#8a502e")); }
-            if(photoData.get(position).getCategory().equals("공연")){
-                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
-                holder.category_tv.setBackgroundColor(Color.parseColor("#ff633c")); }
-        }catch (Exception e){
-            Log.d("TAG_PHOTO_COLOR",e.getMessage());
-        }
+//        try{
+//            holder.category_tv.setText(photoData.get(position).getCategory());
+//            String[] date = photoData.get(position).getDate().split("T");
+//            holder.date_tv.setText(date[0]);
+//
+//            if(photoData.get(position).getCategory().equals("전시")){
+//                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
+//                holder.category_tv.setBackgroundColor(Color.parseColor("#3c9f2f")); }
+//            if(photoData.get(position).getCategory().equals("축제")){
+//                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
+//                holder.category_tv.setBackgroundColor(Color.parseColor("#ffe02f")); }
+//            if(photoData.get(position).getCategory().equals("농어촌")){
+//                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
+//                holder.category_tv.setBackgroundColor(Color.parseColor("#4c78a0")); }
+//            if(photoData.get(position).getCategory().equals("캠핑")){
+//                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
+//                holder.category_tv.setBackgroundColor(Color.parseColor("#8a502e")); }
+//            if(photoData.get(position).getCategory().equals("공연")){
+//                Log.d("TAG_PHOTO_COLOR",photoData.get(position).getCategory()+", "+photoData.get(position).getTitle());
+//                holder.category_tv.setBackgroundColor(Color.parseColor("#ff633c")); }
+//        }catch (Exception e){
+//            Log.d("TAG_PHOTO_COLOR",e.getMessage());
+//        }
 
        // }
 

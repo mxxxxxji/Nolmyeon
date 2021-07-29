@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.nolmyeon.GlobalApplication;
 import com.example.nolmyeon.R;
 import com.example.nolmyeon.RetrofitClient;
+import com.example.nolmyeon.adapter.MyImageAdapter;
 import com.example.nolmyeon.adapter.ShareImageAdapter;
 import com.example.nolmyeon.adapter.ShowViewAdapter;
 import com.example.nolmyeon.model.Exhibition;
@@ -39,6 +40,7 @@ import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,28 +53,32 @@ public class ShareActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     GridLayoutManager gridLayoutManager;
-    ArrayList<Photo> pathArrayList = new ArrayList<>();
-    ArrayList<MyData> myDataset = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
 
     //뒤로가기
     ImageButton backBtn;
     ImageButton myBtn;
     ImageButton addBtn;
+    ArrayList<MyData> allDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
+        Log.d("TAG_REFRESH", "갱신******");
         getPhotoLog();
+
+
         swipeRefreshLayout = findViewById(R.id.refresh_layout);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // use a linear layout manager
         gridLayoutManager = new GridLayoutManager(this, 3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
-        ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();
-        for(int i=0; i<GlobalApplication.getMyDataset().size(); i++){
+
+        ArrayList<MyData> pathArrayList =  GlobalApplication.getAllDataset();
+        for(int i=0; i<GlobalApplication.getAllDataset().size(); i++){
             Log.d("TAG_SHARE", pathArrayList.get(i).uri.toString());
         }
 
@@ -83,6 +89,7 @@ public class ShareActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.back_btn);
         myBtn = findViewById(R.id.my_btn);
         addBtn = findViewById(R.id.add_btn);
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,8 +115,8 @@ public class ShareActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();
-                for(int i=0; i<GlobalApplication.getMyDataset().size(); i++){
+                ArrayList<MyData> pathArrayList =  GlobalApplication.getAllDataset();
+                for(int i=0; i<GlobalApplication.getAllDataset().size(); i++){
                     Log.d("TAG_SHARE", pathArrayList.get(i).uri.toString());
                 }
 
@@ -129,7 +136,7 @@ public class ShareActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Log.d("dataset", title);
-                        myDataset.add(new MyData(title, uri));
+                        allDataList.add(new MyData(title, uri));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -137,9 +144,10 @@ public class ShareActivity extends AppCompatActivity {
 
             }
         });
-        GlobalApplication.setMyDataset(myDataset);
+        GlobalApplication.setAllDataset(allDataList);
     }
     public void getPhotoLog(){
+        Log.d("TAG_REFRESH", "갱신2222");
         ArrayList<Photo> pathArrayList = new ArrayList<>();
         RetrofitClient retrofitClient = new RetrofitClient();
         Call<ArrayList<Photo>> call =  retrofitClient.service.getPhotoLog();
@@ -152,7 +160,6 @@ public class ShareActivity extends AppCompatActivity {
                     pathArrayList.addAll(response.body());
                     for(int i=0; i<pathArrayList.size(); i++){
                         Log.d("dataset", pathArrayList.get(i).getTitle());
-                        GlobalApplication.setPhotoArrayList(pathArrayList);
                         downloadImg(pathArrayList.get(i).getTitle(), pathArrayList.get(i).getImgpath());
                     }
 
@@ -165,6 +172,7 @@ public class ShareActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
