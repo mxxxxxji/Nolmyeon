@@ -53,6 +53,9 @@ public class GlobalApplication extends Application {
     private static int shows;
     private static int admin; //관리자 계정인지 여부
 
+    private static String date;
+
+
     //모든 사용자 정보
     private static ArrayList<User> allUser = new ArrayList<User>();
 
@@ -285,6 +288,15 @@ public class GlobalApplication extends Application {
     public void setData_test(String data_test) {
         this.data_test = data_test;
     }
+
+    public static String getDate() {
+        return date;
+    }
+
+    public static void setDate(String date) {
+        GlobalApplication.date = date;
+    }
+
     //-----------------------------------------------------------------------------
 
 

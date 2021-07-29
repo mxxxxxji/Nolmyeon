@@ -142,14 +142,20 @@ public class PhotoActivity extends Activity {
                     category = spinner.getSelectedItem().toString();
                     contents = contents_et.getText().toString();
                     loadAlbum();
-                    long now = System.currentTimeMillis();
-                    Date mDate = new Date(now);
-                    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-                    String getTime = simpleDate.format(mDate);
-                    sql = "insert into photo (number, title, category, imgpath, contents, date, latitude, longitude)" +
-                            " values("+GlobalApplication.getUser_number()+ ",'"+ title +"', '"+category+"', '"+ path+"', '"+ contents +"'," + getTime +"," +latitude+", "+longitude+")";
-                    Log.d("TAG_PHOTO", sql);
-                    putData(sql);
+
+                    if(GlobalApplication.getDate()!=null){
+                        Log.d("DATE_CHECK", GlobalApplication.getDate());
+                        sql = "insert into photo (number, title, category, imgpath, contents, date, latitude, longitude)" +
+                                " values("+GlobalApplication.getUser_number()+ ",'"+ title +"', '"+category+"', '"+ path+"', '"+ contents +"','" + GlobalApplication.getDate() +"'," +latitude+", "+longitude+")";
+                        Log.d("TAG_PHOTO__", sql);
+                        Intent intent = new Intent(PhotoActivity.this, PhotoLoadingActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("sql", sql);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Log.d("DATE_CHECK", "date is null!!");
+                    }
+
                 }
 
 
@@ -158,39 +164,7 @@ public class PhotoActivity extends Activity {
 
 
     }
-    public void putData(String sql){
-        Log.d("TAG_PHOTO111", sql);
-        Retrofit retrofit;
-        Service service;
 
-
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.HEADERS);
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build();
-
-        //객체 생성
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://project-intern02.wjthinkbig.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-        service = retrofit.create(Service.class);
-
-        Call<String> call =  service.getPhoto(sql);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.d("TAG_PHOTO", response + "");
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d("TAG_PHOTO", "FAIL!!!!!");
-            }
-        });
-    }
     DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -199,6 +173,8 @@ public class PhotoActivity extends Activity {
                     TextView tv = findViewById(R.id.date_tv);
                     tv.setText(String.format("%d-%d-%d", yy,mm+1,dd));
                     date = String.format("%d-%d-%d", yy,mm+1,dd);
+                    Log.d("DATE_CHECK", date);
+                    GlobalApplication.setDate(date);
                 }
             };
     public void onDateClick(View view){

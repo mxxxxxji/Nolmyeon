@@ -1,24 +1,20 @@
 package com.example.nolmyeon.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCaller;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.nolmyeon.GlobalApplication;
-import com.example.nolmyeon.PopupActivity;
 import com.example.nolmyeon.R;
 import com.example.nolmyeon.RetrofitClient;
 import com.example.nolmyeon.activity.ImageViewerActivity2;
@@ -32,11 +28,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyImageAdapter extends RecyclerView.Adapter<MyImageAdapter.Holder> {
+public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.Holder> {
     private ArrayList<MyData> listData;
     Context context;
 
-    public MyImageAdapter(Context context, ArrayList<MyData> listData ) {
+    public MyPhotoAdapter(Context context, ArrayList<MyData> listData ) {
         this.listData = listData;
         this.context = context;
     }
@@ -72,7 +68,7 @@ public class MyImageAdapter extends RecyclerView.Adapter<MyImageAdapter.Holder> 
                 public void onClick(View v) {
                     int position = getAbsoluteAdapterPosition();
                     if (position!=RecyclerView.NO_POSITION){
-                        Toast.makeText(context, position +"", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(context, position +"", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(context, ImageViewerActivity2.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("position", position);
                         intent.putExtra("title", listData.get(position).getText());

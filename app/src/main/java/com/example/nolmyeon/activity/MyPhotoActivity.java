@@ -11,13 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.example.nolmyeon.GlobalApplication;
 import com.example.nolmyeon.R;
 import com.example.nolmyeon.RetrofitClient;
-import com.example.nolmyeon.adapter.MyImageAdapter;
-import com.example.nolmyeon.adapter.ShareImageAdapter;
+import com.example.nolmyeon.adapter.MyPhotoAdapter;
 import com.example.nolmyeon.model.MyData;
 import com.example.nolmyeon.model.Photo;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -62,7 +60,7 @@ public class MyPhotoActivity extends AppCompatActivity {
         }
 
         // specify an adapter (see also next example)
-        mAdapter = new MyImageAdapter(getApplicationContext(),pathArrayList);
+        mAdapter = new MyPhotoAdapter(getApplicationContext(),pathArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
         backBtn = findViewById(R.id.back_btn);
@@ -82,14 +80,15 @@ public class MyPhotoActivity extends AppCompatActivity {
                 }
 
                 // specify an adapter (see also next example)
-                mAdapter = new MyImageAdapter(getApplicationContext(),pathArrayList);
+                mAdapter = new MyPhotoAdapter(getApplicationContext(),pathArrayList);
+
                 mRecyclerView.setAdapter(mAdapter);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
-    public void downloadImg(String title, String path){
+    public void downloadImg(Photo photo, String title, String path){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference();
         storageReference.child(path).getDownloadUrl()
@@ -97,7 +96,7 @@ public class MyPhotoActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Log.d("dataset", title);
-                        myDataset.add(new MyData(title, uri));
+                        myDataset.add(new MyData(title, uri, photo.getNumber(), photo.getCategory(), photo.getImgpath(), photo.getContents(), photo.getDate(), photo.getLatitude(), photo.getLongitude()));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -121,7 +120,7 @@ public class MyPhotoActivity extends AppCompatActivity {
                     pathArrayList.addAll(response.body());
                     for(int i=0; i<pathArrayList.size(); i++){
                         Log.d("dataset", pathArrayList.get(i).getTitle());
-                        downloadImg(pathArrayList.get(i).getTitle(), pathArrayList.get(i).getImgpath());
+                        downloadImg(pathArrayList.get(i),pathArrayList.get(i).getTitle(), pathArrayList.get(i).getImgpath());
                     }
 
                 }

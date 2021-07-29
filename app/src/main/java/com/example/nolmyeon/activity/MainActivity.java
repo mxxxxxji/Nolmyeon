@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void downloadImg(String title, String path, long number){
+    public void downloadImg(Photo photo, String title, String path, long number){
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference();
@@ -326,9 +326,9 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("TAG_PHOTO", title);
                         if(number==GlobalApplication.getUser_number()){
                             Log.d("TAG_PHOTO_MY", title+", "+number);
-                            myDataset.add(new MyData(title, uri));
+                            myDataset.add(new MyData(title, uri, photo.getNumber(), photo.getCategory(), photo.getImgpath(), photo.getContents(), photo.getDate(), photo.getLatitude(), photo.getLongitude()));
                         }
-                        dataset.add(new MyData(title, uri));
+                        dataset.add(new MyData(title, uri, photo.getNumber(), photo.getCategory(), photo.getImgpath(), photo.getContents(), photo.getDate(), photo.getLatitude(), photo.getLongitude()));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -354,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                     GlobalApplication.setPhotoArrayList(photoArrayList);
                     for(int i=0; i<photoArrayList.size(); i++){
                         Log.d("TAG_PHOTO", photoArrayList.get(i).getTitle() +", " + photoArrayList.get(i).getCategory()+"-------------------------");
-                        downloadImg(photoArrayList.get(i).getTitle(), photoArrayList.get(i).getImgpath(), photoArrayList.get(i).getNumber());
+                        downloadImg(photoArrayList.get(i),photoArrayList.get(i).getTitle(), photoArrayList.get(i).getImgpath(), photoArrayList.get(i).getNumber());
                     }
 
                 }
