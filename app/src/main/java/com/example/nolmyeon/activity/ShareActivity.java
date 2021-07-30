@@ -86,7 +86,6 @@ public class ShareActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPhotoActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
             }
         });
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +95,7 @@ public class ShareActivity extends AppCompatActivity {
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
+
             }
         });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

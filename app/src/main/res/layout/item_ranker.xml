@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="100dp"
     android:padding="8dp"
     android:gravity="center_vertical"
     android:layout_marginBottom="8dp"
@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
         android:gravity="center"
-        android:fontFamily="@font/one"
+        android:fontFamily="@font/bold"
         android:text="0위"
         android:textSize="60dp"
         android:textColor="@color/black"></TextView>
@@ -40,7 +40,7 @@
             android:layout_marginLeft="40dp"
             android:includeFontPadding="false"
             android:gravity="center"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="TITLE"
             android:textSize="50dp"
             android:textColor="@android:color/black"
@@ -54,9 +54,8 @@
         android:includeFontPadding="false"
         android:layout_marginRight="40dp"
         android:gravity="center"
-        android:fontFamily="@font/one"
+        android:fontFamily="@font/bold"
         android:text="0개"
         android:textSize="60dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"></TextView>
+        android:textColor="@android:color/black"></TextView>
 </LinearLayout>

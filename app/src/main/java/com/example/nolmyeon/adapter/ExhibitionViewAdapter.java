@@ -153,11 +153,13 @@ public class ExhibitionViewAdapter extends RecyclerView.Adapter<ExhibitionViewAd
                         flag[position] = 0;
                         Toast.makeText(context, "스크랩이 취소 되었습니다", Toast.LENGTH_LONG).show();
                         deleteScrap(GlobalApplication.getUser_number(), "exhibition", listData.get(position).getTitle());
+                        notifyDataSetChanged();
                     }else{
                         Glide.with(context).load(R.drawable.scrap_orange).into(iv_scrap);//스크랩표시
                         flag[position] = 1;
                         Toast.makeText(context, "스크랩 되었습니다", Toast.LENGTH_LONG).show();
                         insertScrap(GlobalApplication.getUser_number(), "exhibition", listData.get(position).getTitle());
+                        notifyDataSetChanged();
                     }
                 }
             });

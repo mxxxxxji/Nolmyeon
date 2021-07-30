@@ -72,21 +72,21 @@ public class MyPhotoActivity extends AppCompatActivity {
             }
         });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();
-                for(int i=0; i<GlobalApplication.getMyDataset().size(); i++){
-                    Log.d("TAG_SHARE", pathArrayList.get(i).uri.toString());
-                }
-
-                // specify an adapter (see also next example)
-                mAdapter = new MyPhotoAdapter(getApplicationContext(),pathArrayList);
-
-                mRecyclerView.setAdapter(mAdapter);
-                swipeRefreshLayout.setRefreshing(false);
+        @Override
+        public void onRefresh() {
+            ArrayList<MyData> pathArrayList =  GlobalApplication.getMyDataset();
+            for(int i=0; i<GlobalApplication.getMyDataset().size(); i++){
+                Log.d("TAG_SHARE", pathArrayList.get(i).uri.toString());
             }
-        });
-    }
+
+            // specify an adapter (see also next example)
+            mAdapter = new MyPhotoAdapter(getApplicationContext(),pathArrayList);
+
+            mRecyclerView.setAdapter(mAdapter);
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    });
+}
 
     public void downloadImg(Photo photo, String title, String path){
         FirebaseStorage storage = FirebaseStorage.getInstance();

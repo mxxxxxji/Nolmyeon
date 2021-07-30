@@ -10,12 +10,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="@color/main_color">
         <ImageButton
             android:id="@+id/back_btn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
             android:scaleType="fitCenter"
             android:src="@drawable/back_btn"
             android:background="#00ff0000">
@@ -25,14 +26,17 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="랭킹 더보기"
             android:textColor="@color/white"
             android:textSize="40dp"
           >
         </TextView>
     </FrameLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/theme_gray"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="600dp"
@@ -45,12 +49,7 @@
             app:lottie_autoPlay="true"
             app:lottie_fileName="animation.json"
             app:lottie_loop="true" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/ranking"></ImageView>
+
 
         <ImageView
             android:layout_width="wrap_content"
@@ -64,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="190dp"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="1"
             android:textColor="#ffffff"
             android:textSize="60dp">
@@ -75,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="325dp"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="홍길동님"
             android:textColor="@color/black"
             android:textSize="30dp"></TextView>
@@ -89,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="320dp"
             android:layout_marginLeft="124dp"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="2"
             android:textColor="#ffffff"
             android:textSize="60dp">
@@ -100,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="470dp"
             android:layout_marginLeft="100dp"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="홍홍홍님"
             android:textColor="@color/black"
             android:textSize="30dp"/>
@@ -115,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="320dp"
             android:layout_marginLeft="630dp"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="3"
             android:textColor="#ffffff"
             android:textSize="60dp"/>
@@ -125,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="460dp"
             android:layout_marginLeft="600dp"
-            android:fontFamily="@font/one"
+            android:fontFamily="@font/bold"
             android:text="홍홍홍님"
             android:textColor="@color/black"
             android:textSize="30dp"/>
@@ -134,7 +133,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rounded_background">
+        android:background="@drawable/half_rounded_background">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

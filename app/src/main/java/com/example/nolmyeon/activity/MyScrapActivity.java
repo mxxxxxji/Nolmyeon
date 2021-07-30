@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import com.example.nolmyeon.GlobalApplication;
 import com.example.nolmyeon.R;
 import com.example.nolmyeon.RetrofitClient;
+import com.example.nolmyeon.adapter.MyPhotoAdapter;
 import com.example.nolmyeon.adapter.MyScrapAdapter;
 import com.example.nolmyeon.adapter.ShareImageAdapter;
 import com.example.nolmyeon.model.MyData;
@@ -30,12 +32,14 @@ public class MyScrapActivity extends AppCompatActivity {
     MyScrapAdapter mAdapter;
     //뒤로가기
     ImageButton backBtn;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_my_scrap);
         backBtn = findViewById(R.id.back_btn);
+        swipeRefreshLayout = findViewById(R.id.refresh_layout);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,8 +53,19 @@ public class MyScrapActivity extends AppCompatActivity {
         getScrap();
         // specify an adapter (see also next example)
         mAdapter = new MyScrapAdapter(getApplicationContext(),GlobalApplication.getScrapArrayList());
+       // mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getScrap();
+                // specify an adapter (see also next example)
+                mAdapter = new MyScrapAdapter(getApplicationContext(),GlobalApplication.getScrapArrayList());
+                // mAdapter.notifyDataSetChanged();
+                mRecyclerView.setAdapter(mAdapter);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
     public void getScrap(){
         RetrofitClient retrofitClient = new RetrofitClient();
