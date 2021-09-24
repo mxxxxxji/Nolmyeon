@@ -15,11 +15,14 @@
 </br></br></br></br>
 
 ## 4. 주요 기능
-1. 주변 체험 학습 목록 보기
+### 메인화면
+![image](https://user-images.githubusercontent.com/52437364/134690000-1049b39b-c596-47ca-831a-b7106ace612f.png)</br></br></br></br>
+### 1. 주변 체험 학습 목록 보기
 ![image](https://user-images.githubusercontent.com/52437364/134688885-063d82a9-0988-4be9-b499-4349decbcf30.png)</br></br></br></br>
-2. 주변 체험 학습 지도 보기
-3. ![image](https://user-images.githubusercontent.com/52437364/134688885-063d82a9-0988-4be9-b499-4349decbcf30.png)</br></br></br></br>
-4. QR 스탬프 적립 하기
+### 2. 주변 체험 학습 지도 보기
+![image](https://user-images.githubusercontent.com/52437364/134690000-1049b39b-c596-47ca-831a-b7106ace612f.png)
+</br></br></br></br>
+### 3. QR 스탬프 적립 하기
 ![image](https://user-images.githubusercontent.com/52437364/134689345-b73e09e1-4d35-4e71-9a3b-b1976149447f.png)</br></br></br></br>
-6. 체험학습 사진 둘러보기
-7. ![image](https://user-images.githubusercontent.com/52437364/134689463-d2ffcf94-b816-4bc2-9227-f170a15599bf.png)</br></br></br></br>
+### 4. 체험학습 사진 둘러보기
+![image](https://user-images.githubusercontent.com/52437364/134689463-d2ffcf94-b816-4bc2-9227-f170a15599bf.png)</br></br></br></br>
