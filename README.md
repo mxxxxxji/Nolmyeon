@@ -15,3 +15,8 @@
 
 
 ## 4. 주요 기능
+![image](https://user-images.githubusercontent.com/52437364/134688077-1d396f23-0753-42c4-b07d-eae8385dacf3.png)
+![image](https://user-images.githubusercontent.com/52437364/134688173-4ac52a89-e698-43de-be4e-3088307d0399.png)
+![image](https://user-images.githubusercontent.com/52437364/134688264-e608807c-d68d-4f8e-9c12-64b36c5599b4.png)
+![image](https://user-images.githubusercontent.com/52437364/134688355-ec9fe9ff-53dc-49e0-a674-1661b22d550b.png)
+![image](https://user-images.githubusercontent.com/52437364/134688467-697a23b4-d19a-474c-ad8e-ba45df082c4e.png)
