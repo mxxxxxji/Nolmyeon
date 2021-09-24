@@ -15,8 +15,9 @@
 </br></br></br></br>
 
 ## 4. 주요 기능
-### 메인화면
-![image](https://user-images.githubusercontent.com/52437364/134690000-1049b39b-c596-47ca-831a-b7106ace612f.png)</br></br></br></br>
+### [메인화면]
+![image](https://user-images.githubusercontent.com/52437364/134690291-f20c7183-32bb-4205-ae4b-700b702bc4fc.png)
+</br></br></br></br>
 ### 1. 주변 체험 학습 목록 보기
 ![image](https://user-images.githubusercontent.com/52437364/134688885-063d82a9-0988-4be9-b499-4349decbcf30.png)</br></br></br></br>
 ### 2. 주변 체험 학습 지도 보기
